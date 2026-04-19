@@ -244,12 +244,13 @@ if not exist "%~dp0node_modules\\axios" (
 :: -------------------------
 if exist "%CODEPROFILE%\\env-setup.npl" (
     echo [INFO] Running env-setup.npl...
-    cd "%CODEPROFILE%"
+    pushd "%CODEPROFILE%"
     "%NODE_EXE%" "%CODEPROFILE%\\env-setup.npl"
     if errorlevel 1 (
         echo [ERROR] env-setup execution failed.
         exit /b 1
-    )
+        )
+    popd
 ) else (
     echo [ERROR] env-setup.npl not found.
     exit /b 1
